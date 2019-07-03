@@ -54,14 +54,22 @@ public class UserInfoController {
        entity.setMgender(param.getMgender());
        System.out.println("엔티티 : "+entity);
        repo.save(entity);
+
     }
 
     @PostMapping("/login")
-    public void login(@RequestBody UserInfoDTO param) {
-       System.out.println(param);
-       UserInfo test =repo.findByMidAndMpassword(param.getMid(), param.getMpassword());
-       System.out.println(test);
-    }
+    public HashMap<String,Object> login(@RequestBody UserInfoDTO param) {
+         System.out.println(param);
+         UserInfo test =repo.findByMidAndMpassword(param.getMid(), param.getMpassword());
+         System.out.println(test);
+         HashMap<String,Object> map =new HashMap<>();
+        if(test != null){
+           map.put("result","sucess");
+        }else{
+           map.put("result","fail");
+        }
+         return map;
+   }
 
     @GetMapping("/mypage/{id}")
     public UserInfoDTO mypage(@PathVariable long id){

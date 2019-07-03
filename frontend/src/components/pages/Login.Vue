@@ -87,7 +87,7 @@ export default {
                  JSON.stringify(data),
                 {headers:headers})
                 .then(r=>{
-                    alert(r)
+                   alert(r.data.result)
                 }).catch(e=>{
                     alert("통신에러"+e)
                 })
