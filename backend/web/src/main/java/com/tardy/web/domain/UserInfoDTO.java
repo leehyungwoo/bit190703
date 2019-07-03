@@ -13,10 +13,10 @@ import lombok.Data;
 @Lazy
 public class UserInfoDTO {
     private String id,
-                   userid,
-                   userpassword,
-                   username,
-                   useremail,
-                   userphone,
-                   usergender; 
+                   mid,
+                   mpassword,
+                   mname,
+                   memail,
+                   mphone,
+                   mgender; 
 }

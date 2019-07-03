@@ -46,12 +46,12 @@ public class UserInfoController {
        System.out.println("조인");
        System.out.println(param);
        UserInfo entity = new UserInfo();
-       entity.setUserid(param.getUserid());
-       entity.setUserpassword(param.getUserpassword());
-       entity.setUsername(param.getUsername());
-       entity.setUseremail(param.getUseremail());
-       entity.setUserphone(param.getUserphone());
-       entity.setUsergender(param.getUsergender());
+       entity.setMid(param.getMid());
+       entity.setMpassword(param.getMpassword());
+       entity.setMname(param.getMname());
+       entity.setMemail(param.getMemail());
+       entity.setMphone(param.getMphone());
+       entity.setMgender(param.getMgender());
        System.out.println("엔티티 : "+entity);
        repo.save(entity);
     }
@@ -59,7 +59,7 @@ public class UserInfoController {
     @PostMapping("/login")
     public void login(@RequestBody UserInfoDTO param) {
        System.out.println(param);
-       UserInfo test =repo.findByUseridAndUserpassword(param.getUserid(), param.getUserpassword());
+       UserInfo test =repo.findByMidAndMpassword(param.getMid(), param.getMpassword());
        System.out.println(test);
     }
 
@@ -71,18 +71,29 @@ public class UserInfoController {
       System.out.println(">>>"+entity.toString());
       UserInfoDTO target = modelMapper.map(entity, UserInfoDTO.class);
       System.out.println(target);
-
       return target;
    }
 
     @PutMapping("/update")
     public void put(@RequestBody UserInfoDTO param) {
        System.out.println("업데이트");
-       System.out.println(param);
-       System.out.println("프론트에서 온 id값 : " + param.getId());
-   
-       
-      }
+       System.out.println(Long.parseLong(param.getId()));
+
+       long id = Long.parseLong(param.getId());
+       UserInfo entity = repo.findById(id).orElseThrow(EntityNotFoundException :: new);
+       System.out.println("파람 : " + param);
+       System.out.println("엔티티 : "+entity);
+      //  UserInfoDTO target = modelMapper.map(entity, UserInfoDTO.class);
+       entity.setMid(param.getMid());
+       entity.setMpassword(param.getMpassword());
+       entity.setMname(param.getMname());
+       entity.setMemail(param.getMemail());
+       entity.setMphone(param.getMphone());
+       entity.setMgender(param.getMgender());
+       System.out.println("결과 : " + entity);
+       repo.save(entity);
+
+    }
 
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable long id) {

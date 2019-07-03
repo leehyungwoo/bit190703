@@ -31,11 +31,11 @@
                     <div name="contactform" id="contactform">
                         <div class="form-group">
                             <label>아이디</label>
-                            <input type="text" class="form-control" id="userid" placeholder="Enter Id" name="userid" v-model="userid">
+                            <input type="text" class="form-control" id="userid" placeholder="Enter Id" name="userid" v-model="mid">
                         </div>
                         <div class="form-group">
                             <label>비밀번호</label>
-                            <input type="password" class="form-control" id="userpassword" placeholder="Enter Password" name="userpassword" v-model="userpassword">
+                            <input type="password" class="form-control" id="userpassword" placeholder="Enter Password" name="userpassword" v-model="mpassword">
                         </div>
                         <!-- <div class="form-group">
                             <label>비밀번호 확인</label>
@@ -44,33 +44,27 @@
                         <div class="form-group">
                             <label>이름</label>
                             <input type="text" class="form-control" id="username" placeholder="Enter Name" name="username"
-                            v-model="username">
+                            v-model="mname">
                         </div>
                         <div class="form-group">
                             <label>이메일</label>
                             <input type="email" class="form-control" id="useremail" placeholder="Enter email" name="useremail"
-                            v-model="useremail">
+                            v-model="memail">
                         </div>
                         <div class="form-group">
                             <label>핸드폰번호</label>
                             <input type="tel" class="form-control" id="userphone" placeholder="Enter Phone" name="userphone"
-                            v-model="userphone"
+                            v-model="mphone"
                             >
                         </div>
                         <div class="form-group">
                             <label>성별</label><br/>
-                          
-                                   
-
                                         <input type="radio" name="options" id="option1" autocomplete="off"
-                                         value="m" v-model="usergender" checked> 남성
+                                         value="m" v-model="mgender" checked> 남성
                                     
                                 
                                         <input type="radio" name="options" id="option2" autocomplete="off"
-                                         value="w" v-model="usergender"/> 여성
-                                  
-                                
-                            
+                                         value="w" v-model="mgender"/> 여성   
                         </div>
            
                         <!-- <div class="form-group">
@@ -105,12 +99,12 @@ export default {
     data(){
         return{
             hostname:'http://localhost:9000/userinfo',
-            userid:'',
-            userpassword:'',
-            username:'',
-            useremail:'',
-            userphone:'',
-            usergender:null,
+            mid:'',
+            mpassword:'',
+            mname:'',
+            memail:'',
+            mphone:'',
+            mgender:"m",
         }
     },
     components:{
@@ -121,12 +115,12 @@ export default {
     methods:{
         submit(){
                 var data = {
-                    userid: this.userid,
-                    userpassword: this.userpassword,
-                    username: this.username,
-                    useremail: this.useremail,
-                    userphone: this.userphone,
-                    usergender: this.usergender,
+                    mid: this.mid,
+                    mpassword: this.mpassword,
+                    mname: this.mname,
+                    memail: this.memail,
+                    mphone: this.mphone,
+                    mgender: this.mgender,
                 }
  
                 var headers = {

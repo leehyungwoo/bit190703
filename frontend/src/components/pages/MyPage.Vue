@@ -33,11 +33,11 @@
                          <div name="contactform" id="contactform">
                         <div class="form-group">
                             <label>아이디</label>
-                            <input type="text" class="form-control" id="user_id" placeholder="Enter Id" name="user_id" v-model="userid">
+                            <input type="text" class="form-control" id="user_id" placeholder="Enter Id" name="user_id" v-model="mid">
                         </div>
                         <div class="form-group">
                             <label>비밀번호</label>
-                            <input type="password" class="form-control" id="user_password" placeholder="Enter Password" name="user_password" v-model="userpassword">
+                            <input type="password" class="form-control" id="user_password" placeholder="Enter Password" name="user_password" v-model="mpassword">
                         </div>
                         <div class="form-group">
                             <label>비밀번호 확인</label>
@@ -46,28 +46,30 @@
                         <div class="form-group">
                             <label>이름</label>
                             <input type="text" class="form-control" id="user_name" placeholder="Enter Name" name="user_name"
-                            v-model="username">
+                            v-model="mname">
                         </div>
                         <div class="form-group">
                             <label>이메일</label>
                             <input type="email" class="form-control" id="user_email" placeholder="Enter Email" name="user_email"
-                            v-model="useremail">
+                            v-model="memail">
                         </div>
                         <div class="form-group">
                             <label>핸드폰번호</label>
                             <input type="tel" class="form-control" id="user_phone" placeholder="Enter Phone" name="user_phone"
-                            v-model="userphone">
+                            v-model="mphone">
                         </div>
                         <div class="form-group">
                             <label>성별</label><br/>
                             <!-- <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label class="btn btn-secondary active"> -->
-                                        <input type="radio" name="options" id="option1" autocomplete="off" checked> 남성
+                                         <input type="radio" name="options" id="option1" autocomplete="off"
+                                         value="m" v-model="mgender" checked> 남성
                                     <!-- </label> -->
                                     <!-- <label class="btn btn-secondary"> -->
-                                        <input type="radio" name="options" id="option2" autocomplete="off"> 여성
+                                        <input type="radio" name="options" id="option2" autocomplete="off"
+                                         value="w" v-model="mgender"/> 여성
                                     <!-- </label>
-                            </div> -->
+                            </div>-->
                         </div>
                         <!-- <div class="form-group">
                             <label>선호모임</label>
@@ -104,11 +106,12 @@ export default {
         return{
              hostname:'http://localhost:9000/userinfo',
              id:1,
-             userid:"",
-             userpassword:"",
-             username:"",
-             useremail:"",
-             userphone:""
+             mid:"",
+             mpassword:"",
+             mname:"",
+             memail:"",
+             mphone:"",
+             mgender:""
         }
     },
     created() {
@@ -117,11 +120,12 @@ export default {
         .then(res=>{
            
             this.id=res.data.id;
-            this.userid=res.data.userid;
-            this.userpassword=res.data.userpassword;
-            this.username=res.data.username;
-            this.useremail=res.data.useremail;
-            this.userphone=res.data.userphone;
+            this.mid=res.data.mid;
+            this.mpassword=res.data.mpassword;
+            this.mname=res.data.mname;
+            this.memail=res.data.memail;
+            this.mphone=res.data.mphone,
+            this.mgender=res.data.mgender
         
         })
         .catch(e=>{
@@ -138,11 +142,12 @@ export default {
 
                var data = {  
                     id:this.id,
-                    userid:this.userid,
-                    userpassword:this.userpassword,
-                    username:this.username,
-                    useremail:this.useremail,
-                    userphone:this.userphone
+                    mid:this.mid,
+                    mpassword:this.mpassword,
+                    mname:this.mname,
+                    memail:this.memail,
+                    mphone:this.mphone,
+                    mgender:this.mgender
                 }
                  var headers = {
                     "Content-Type":"application/json",
@@ -159,8 +164,8 @@ export default {
         },
         remove(){
                  var data = {
-                     userid:this.userid,
-                     userpassword:this.userpassword
+                     mid:this.mid,
+                     mpassword:this.mpassword
                 }
                 axios.delete(`${this.hostname}/delete/${this.id}`)
                 .then(r=>{

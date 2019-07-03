@@ -31,12 +31,12 @@
                     <div name="contactform" id="contactform">
                         <div class="form-group">
                             <label>아이디</label>
-                            <input type="text" class="form-control" id="user_id" placeholder="Enter Id" name="user_id" v-model="userid">
+                            <input type="text" class="form-control" id="user_id" placeholder="Enter Id" name="user_id" v-model="mid">
                         </div>
                         <div class="form-group">
                             <label>비밀번호</label>
                             <input type="password" class="form-control" id="user_password" placeholder="Enter Password" 
-                            v-model="userpassword"
+                            v-model="mpassword"
                             name="user_password">
                         </div>
                         <button @click="login()" class="btn btn-default">Login</button>
@@ -63,8 +63,8 @@ export default {
     data(){
         return{
             hostname:'http://localhost:9000/userinfo',
-            userid:'',
-            userpassword:'',
+            mid:'',
+            mpassword:'',
         }
     },
     components:{
@@ -75,8 +75,8 @@ export default {
     methods:{
         login(){
                  var data = {
-                     userid:this.userid,
-                     userpassword:this.userpassword
+                     mid:this.mid,
+                     mpassword:this.mpassword
                 }
                  var headers = {
                     "Content-Type":"application/json",

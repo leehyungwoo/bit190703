@@ -26,37 +26,37 @@ public class UserInfo implements Serializable{  //매퍼역할
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Long id;
-  @Column(name="mid") private String userid;
-  @Column(name="mpassword") private String userpassword;
-  @Column(name="mname") private String username;
-  @Column(name="memail") private String useremail;
-  @Column(name="mphone") private String userphone;
-  @Column(name="mgender") private String usergender;
+  @Column(name="mid") private String mid;
+  @Column(name="mpassword") private String mpassword;
+  @Column(name="mname") private String mname;
+  @Column(name="memail") private String memail;
+  @Column(name="mphone") private String mphone;
+  @Column(name="mgender") private String mgender;
    //이름이 같으면 생략가능
 
 
   @Override
   public String toString(){
-    return "UserInfo :[id:"+id+",mid:" +userid+", mpassword:"+userpassword+", mname:"+username+", memail:"+useremail+", mphone:"+userphone+", mgender:"+usergender+"]"; 
+    return "UserInfo :[id:"+id+",mid:" +mid+", mpassword:"+mpassword+", mname:"+mname+", memail:"+memail+", mphone:"+mphone+", mgender:"+mgender+"]"; 
   }
 
   //resultMap이라 생각
   @Builder
   private UserInfo(
  
-      String userid,
-      String userpassword,
-      String username,
-      String useremail,
-      String userphone,
-      String usergender){
+      String mid,
+      String mpassword,
+      String mname,
+      String memail,
+      String mphone,
+      String mgender){
 
-      this.userid = userid;
-      this.userpassword = userpassword;
-      this.username = username;
-      this.useremail = useremail;
-      this.userphone = userphone;
-      this.usergender = usergender;
+      this.mid = mid;
+      this.mpassword = mpassword;
+      this.mname = mname;
+      this.memail = memail;
+      this.mphone = mphone;
+      this.mgender = mgender;
 
   }
 
