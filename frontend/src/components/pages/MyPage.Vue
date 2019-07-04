@@ -33,16 +33,16 @@
                          <div name="contactform" id="contactform">
                         <div class="form-group">
                             <label>아이디</label>
-                            <input type="text" class="form-control" id="user_id" placeholder="Enter Id" name="user_id" v-model="mid">
+                            <input type="text" class="form-control" id="user_id" placeholder="Enter Id" name="user_id" v-model="mid" disabled>
                         </div>
                         <div class="form-group">
                             <label>비밀번호</label>
                             <input type="password" class="form-control" id="user_password" placeholder="Enter Password" name="user_password" v-model="mpassword">
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>비밀번호 확인</label>
                             <input type="password" class="form-control" id="user_password_con" placeholder="Enter Password" name="user_password_con">
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label>이름</label>
                             <input type="text" class="form-control" id="user_name" placeholder="Enter Name" name="user_name"
@@ -115,8 +115,9 @@ export default {
         }
     },
     created() {
-
-        axios.get(`${this.hostname}/mypage/${this.id}`)
+        let user = localStorage.getItem('user');
+        console.log(user)
+        axios.get(`${this.hostname}/mypage/${user}`)
         .then(res=>{
            
             this.id=res.data.id;
@@ -149,7 +150,7 @@ export default {
                     mphone:this.mphone,
                     mgender:this.mgender
                 }
-                 var headers = {
+                var headers = {
                     "Content-Type":"application/json",
                     "Authorization":"JWT fefege.."
                 }
@@ -157,13 +158,13 @@ export default {
                  JSON.stringify(data),
                 {headers:headers})
                 .then(r=>{
-                    alert(r.data)
+                    alert(r.data.result)
                 }).catch(e=>{
                     alert("통신에러"+e)
                 })
         },
         remove(){
-                 var data = {
+                var data = {
                      mid:this.mid,
                      mpassword:this.mpassword
                 }

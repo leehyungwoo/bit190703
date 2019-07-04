@@ -31,16 +31,16 @@
                     <div name="contactform" id="contactform">
                         <div class="form-group">
                             <label>아이디</label>
-                            <input type="text" class="form-control" id="user_id" placeholder="Enter Id" name="user_id" v-model="mid">
+                            <input type="text" class="form-control" id="mid" placeholder="Enter Id" name="mid" v-model="mid">
                         </div>
                         <div class="form-group">
                             <label>비밀번호</label>
-                            <input type="password" class="form-control" id="user_password" placeholder="Enter Password" 
+                            <input type="password" class="form-control" id="mpassword" placeholder="Enter Password" 
                             v-model="mpassword"
-                            name="user_password">
+                            name="mpassword">
                         </div>
                         <button @click="login()" class="btn btn-default">Login</button>
-                        <router-link to="find-user" class="btn btn-default">FindUser</router-link>
+                        <!-- <router-link to="find-user" class="btn btn-default">FindUser</router-link> -->
                     </div>
                 </div>
             </div>
@@ -88,10 +88,16 @@ export default {
                 {headers:headers})
                 .then(r=>{
                    alert(r.data.result)
+                   localStorage.setItem('user',r.data.user)
+                   this.$store.state.userInfo.logintf=true;
+                   this.$store.state.userInfo.userId=r.data.user;
+                   this.$router.push({path:'/'})
+
                 }).catch(e=>{
                     alert("통신에러"+e)
                 })
-        }
+        },
+        
     }
 }
 </script>

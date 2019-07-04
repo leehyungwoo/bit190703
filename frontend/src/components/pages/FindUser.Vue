@@ -33,12 +33,12 @@
                         <h4 class="mb-4 w3f_title">아이디 비밀번호찾기</h4>
                         <div name="contactform" id="contactform" >
                                 <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name">
+                                <label>아이디</label>
+                                <input type="text" class="form-control" id="ID" placeholder="Enter ID" name="name" v-model="mid">
                                 </div>
                                 <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" class="form-control" id="name" placeholder="Enter Email" name="email">
+                                <input type="email" class="form-control" id="name" placeholder="Enter Email" name="email" v-model="memail">
                                 </div>
                                 <!-- <div class="form-group">
                                 <label>How can we help?</label>
@@ -62,10 +62,14 @@
 import headerComponent from "@/components/common/headerComponent"
 import copyright from "@/components/common/copyright"
 import movetop from "@/components/common/movetop"
+import axios from "axios"
+
 export default {
     data(){
         return{
-           
+           mid:"",
+           memail:"",
+            hostname:'http://localhost:9000/userinfo'
         }
     },
     components:{
@@ -75,7 +79,23 @@ export default {
     },
     methods:{
         submit(){
-            alert("서브밋")
+                 var data = {
+                     mid:this.mid,
+                     memail:this.memail
+                }
+               var headers = {
+                    "Content-Type":"application/json",
+                    "Authorization":"JWT fefege.."
+                }
+
+                axios.post(`${this.hostname}/find`,
+                JSON.stringify(data),
+                {headers:headers}
+                ).then(r=>{
+                    alert(r.data.result);
+                }).catch(e=>{
+                    alert(e)
+                })      
         },
  
     }

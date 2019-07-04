@@ -31,7 +31,7 @@
                     <div name="contactform" id="contactform">
                         <div class="form-group">
                             <label>아이디</label>
-                            <input type="text" class="form-control" id="userid" placeholder="Enter Id" name="userid" v-model="mid">
+                            <input type="text" class="form-control" id="userid" placeholder="Enter Id" name="userid" v-model="mid" >
                         </div>
                         <div class="form-group">
                             <label>비밀번호</label>
@@ -131,11 +131,14 @@ export default {
                  JSON.stringify(data),
                 {headers:headers})
                 .then(r=>{
-                    alert(r)
+                    alert(r.data.result)
+                    this.$router.push({path:'login'})
+                    
                 }).catch(e=>{
                     alert("통신에러"+e)
                 })
         },
+        
         
     }
 }
